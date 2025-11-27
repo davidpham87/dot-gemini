@@ -12,3 +12,9 @@ pom.xml.asc
 .lein-failures
 .nrepl-port
 .cpcache/
+google_accounts.json
+installation_id
+extensions
+mcp-oauth-tokens-v2.json
+tmp
+state.json

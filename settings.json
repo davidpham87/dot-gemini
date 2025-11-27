@@ -1,0 +1,27 @@
+{
+    "security": {
+        "auth": {
+            "selectedType": "gemini-api-key"
+        }
+    },
+    "general": {
+        "preferredEditor": "emacs",
+        "previewFeatures": true,
+        "enablePromptCompletion": true
+    },
+    "ui": {
+        "theme": "GitHub",
+        "hideBanner": true,
+        "footer": {
+            "hideModelInfo": true
+        },
+        "hideFooter": true,
+        "showMemoryUsage": true,
+        "showLineNumbers": false,
+        "showCitations": true,
+        "showModelInfoInChat": true,
+        "hideWindowTitle": true,
+        "useAlternateBuffer": true,
+        "useFullWidth": true
+    }
+}
