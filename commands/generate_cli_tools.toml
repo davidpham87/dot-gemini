@@ -12,11 +12,16 @@ Your goal is to automatically generate Gemini custom command wrappers for the CL
     a.  **Execute Help**: Run the command with `--help` (or `-h` if that fails) in the shell.
     b.  **Log Output**: Save the output to a file `logs/<tool>_help.log`. Create the `logs/` directory if needed.
     c.  **Analyze**: Identify specific capabilities, flags, and usage patterns from the help text.
-    d.  **Generate Wrapper**: Create a new file `commands/<tool>.toml`.
+    d.  **Generate Wrapper**: Create a new file `commands/cli/<tool>.toml`. Create the `commands/cli/` directory if needed.
 
-**Wrapper Format (`commands/<tool>.toml`):**
+**Wrapper Format (`commands/cli/<tool>.toml`):**
 
 The file must be valid TOML. Use the information from the log file to fill the description and the prompt.
+
+**CRITICAL: Variable Handling**
+The generated file is a template. It needs to contain the literal string `{{args}}` so the Gemini CLI can inject user input later.
+**Do NOT write the tool name in the place of arguments.**
+**Write exactly `{{args}}` (curly braces, args, curly braces) where indicated below.**
 
 ```toml
 description = "<Short description of the tool based on the help text>"
@@ -25,10 +30,10 @@ You are an expert in using {<tool>}.
 
 Your goal is to assist the user in constructing valid `<tool>` commands based on natural language requests.
 
-**User Request:** {{args}}
+**User Request:** {{ args }}  <-- REPLACE THIS WITH THE LITERAL STRING `{{args}}`
 
 **Instructions:**
-1.  **Understand the Request**: specific input files, output formats, and options requested by the user in `{{args}}`.
+1.  **Understand the Request**: specific input files, output formats, and options requested by the user in `{{ args }}`. <-- REPLACE THIS WITH THE LITERAL STRING `{{args}}`
 2.  **Consult Knowledge**: Use the known flags and options of `<tool>` (derived from your internal knowledge and the context of what this tool does).
 3.  **Ambiguity Check**: If the user's request is vague or missing critical arguments (like input file or required flags), **ask for clarification**.
 4.  **Output**: Generate the precise shell command.
@@ -43,5 +48,5 @@ You (Agent): `<tool> resume.md -o resume.pdf`
 ```
 
 **Immediate Execution:**
-Start processing the tools listed in `{{args}}` immediately.
+Start processing the tools listed in `{{args}}` immediately. Use your available tools (like shell execution and file writing) to perform these actions.
 """
