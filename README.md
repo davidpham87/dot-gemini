@@ -30,4 +30,4 @@ Sub repos might be more helpful for repos though to install gemini extensions.
 Idea to explore:
     - clojure-mcp
     - mcp-clj
-
+    - clojure-mcp https://github.com/bhauman/clojure-mcp-light
